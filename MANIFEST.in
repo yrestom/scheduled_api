@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include scheduled_api *.css
+recursive-include scheduled_api *.csv
+recursive-include scheduled_api *.html
+recursive-include scheduled_api *.ico
+recursive-include scheduled_api *.js
+recursive-include scheduled_api *.json
+recursive-include scheduled_api *.md
+recursive-include scheduled_api *.png
+recursive-include scheduled_api *.py
+recursive-include scheduled_api *.svg
+recursive-include scheduled_api *.txt
+recursive-exclude scheduled_api *.pyc
