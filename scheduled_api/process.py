@@ -90,15 +90,19 @@ def send_response(kwargs):
         return
     frappe.db.set_value("Schedule Request", response.name, "status", "Sending")
     frappe.db.commit()
-
     headers = get_headers(response.callback_profile)
+    data = {
+        "data": response.data,
+        "reference_id": response.reference_id,
+        "request_id": response.schedule_request,
+    }
     for i in range(3):
         r = {}
         try:
             r = requests.request(
                 method="POST",
                 url=response.callback_url,
-                data=response.data,
+                data=data,
                 headers=headers,
                 timeout=15,
             )
