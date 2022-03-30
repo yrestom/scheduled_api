@@ -11,7 +11,7 @@ setup(
     version=version,
     description="Scheduled API",
     author="Totrox & Aakvatech",
-    author_email="info@totrox.cmo & info@aakvatech.com",
+    author_email="info@totrox.com & info@aakvatech.com",
     packages=find_packages(),
     zip_safe=False,
     include_package_data=True,

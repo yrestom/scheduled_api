@@ -16,7 +16,7 @@ def add_request(
     doc.callback_profile = callback_profile
     doc.tag = tag
     doc.reference_id = reference_id
-    doc.insert(ignore_permissions=True, ignore_mandatory=True)
+    doc.insert(ignore_mandatory=True)
     frappe.response["data"] = doc.as_dict()
     frappe.db.commit()
     enqueue_execute(doc.name)

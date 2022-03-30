@@ -6,7 +6,7 @@ app_publisher = "Totrox & Aakvatech"
 app_description = "Scheduled API"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
-app_email = "info@totrox.cmo & info@aakvatech.com"
+app_email = "info@totrox.com & info@aakvatech.com"
 app_license = "MIT"
 
 # Includes in <head>

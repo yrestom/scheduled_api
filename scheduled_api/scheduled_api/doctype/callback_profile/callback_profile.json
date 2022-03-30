@@ -9,7 +9,7 @@
  "field_order": [
   "title",
   "callback_url",
-  "callback_header"
+  "headers"
  ],
  "fields": [
   {
@@ -19,20 +19,20 @@
    "unique": 1
   },
   {
-   "fieldname": "callback_header",
-   "fieldtype": "Table",
-   "label": "Callback Header",
-   "options": "Callback Header"
-  },
-  {
    "fieldname": "callback_url",
    "fieldtype": "Data",
    "label": "Default Callback URL"
+  },
+  {
+   "fieldname": "headers",
+   "fieldtype": "Table",
+   "label": "Callback Header",
+   "options": "Callback Header"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-03-29 22:00:48.664948",
+ "modified": "2022-03-30 00:33:57.125630",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Callback Profile",
