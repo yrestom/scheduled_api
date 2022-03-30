@@ -2,11 +2,11 @@ from . import __version__ as app_version
 
 app_name = "scheduled_api"
 app_title = "Scheduled Api"
-app_publisher = "Info Aakvatech"
+app_publisher = "Totrox & Aakvatech"
 app_description = "Scheduled API"
 app_icon = "octicon octicon-file-directory"
 app_color = "grey"
-app_email = "info@aakvatech.com"
+app_email = "info@totrox.cmo & info@aakvatech.com"
 app_license = "MIT"
 
 # Includes in <head>
@@ -44,7 +44,7 @@ app_license = "MIT"
 
 # website user home page (by Role)
 # role_home_page = {
-#	"Role": "home_page"
+# 	"Role": "home_page"
 # }
 
 # Generators
@@ -100,7 +100,7 @@ app_license = "MIT"
 # 		"on_update": "method",
 # 		"on_cancel": "method",
 # 		"on_trash": "method"
-#	}
+# 	}
 # }
 
 # Scheduled Tasks
@@ -152,24 +152,22 @@ app_license = "MIT"
 # --------------------
 
 user_data_fields = [
-	{
-		"doctype": "{doctype_1}",
-		"filter_by": "{filter_by}",
-		"redact_fields": ["{field_1}", "{field_2}"],
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_2}",
-		"filter_by": "{filter_by}",
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_3}",
-		"strict": False,
-	},
-	{
-		"doctype": "{doctype_4}"
-	}
+    {
+        "doctype": "{doctype_1}",
+        "filter_by": "{filter_by}",
+        "redact_fields": ["{field_1}", "{field_2}"],
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_2}",
+        "filter_by": "{filter_by}",
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_3}",
+        "strict": False,
+    },
+    {"doctype": "{doctype_4}"},
 ]
 
 # Authentication and authorization
@@ -178,4 +176,3 @@ user_data_fields = [
 # auth_hooks = [
 # 	"scheduled_api.auth.validate"
 # ]
-

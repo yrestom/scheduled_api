@@ -1,4 +1,4 @@
-## Scheduled Api
+## Scheduled API
 
 Scheduled API
 

@@ -1,0 +1,140 @@
+{
+ "actions": [],
+ "creation": "2022-03-29 23:03:53.675468",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "schedule_request",
+  "method",
+  "tag",
+  "callback_profile",
+  "callback_url",
+  "column_break_5",
+  "reference_id",
+  "posting_date",
+  "posting_time",
+  "section_break_8",
+  "data",
+  "errors_section",
+  "errors"
+ ],
+ "fields": [
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Pending\nSending\nSuccess\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Method",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tag",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Tag"
+  },
+  {
+   "fieldname": "callback_url",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Callback URL"
+  },
+  {
+   "fieldname": "callback_profile",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Callback Profile",
+   "options": "Callback Profile"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_id",
+   "fieldtype": "Data",
+   "label": "Reference ID"
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only": 1
+  },
+  {
+   "default": "Now",
+   "fieldname": "posting_time",
+   "fieldtype": "Time",
+   "label": "Posting Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "data",
+   "fieldtype": "Code",
+   "label": "Data",
+   "options": "JSON",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schedule_request",
+   "fieldtype": "Data",
+   "label": "Schedule Request",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval: doc.errors",
+   "fieldname": "errors_section",
+   "fieldtype": "Section Break",
+   "label": "Errors"
+  },
+  {
+   "fieldname": "errors",
+   "fieldtype": "Table",
+   "label": "Errors",
+   "options": "Scheduled Error"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-03-30 00:01:14.312166",
+ "modified_by": "Administrator",
+ "module": "Scheduled Api",
+ "name": "Schedule Response",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

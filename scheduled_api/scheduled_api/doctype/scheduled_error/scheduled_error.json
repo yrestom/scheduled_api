@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2022-03-29 23:37:06.021708",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "time_stamp",
+  "error",
+  "traceback"
+ ],
+ "fields": [
+  {
+   "columns": 8,
+   "default": "Error",
+   "fieldname": "error",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Error"
+  },
+  {
+   "fieldname": "traceback",
+   "fieldtype": "Code",
+   "label": "TraceBack"
+  },
+  {
+   "columns": 2,
+   "fieldname": "time_stamp",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Time Stamp",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2022-03-29 23:59:18.384020",
+ "modified_by": "Administrator",
+ "module": "Scheduled Api",
+ "name": "Scheduled Error",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

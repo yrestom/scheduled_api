@@ -1,0 +1,37 @@
+{
+ "actions": [],
+ "creation": "2022-03-29 20:27:42.263128",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "key",
+  "value"
+ ],
+ "fields": [
+  {
+   "fieldname": "key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Key"
+  },
+  {
+   "fieldname": "value",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Value"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2022-03-29 20:27:42.263128",
+ "modified_by": "Administrator",
+ "module": "Scheduled Api",
+ "name": "Callback Header",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
