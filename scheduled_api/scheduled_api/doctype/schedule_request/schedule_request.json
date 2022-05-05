@@ -16,6 +16,8 @@
   "posting_time",
   "section_break_8",
   "data",
+  "ref_doctype",
+  "ref_docname",
   "errors_section",
   "errors"
  ],
@@ -37,14 +39,12 @@
   {
    "fieldname": "callback_url",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Callback URL"
   },
   {
    "fieldname": "callback_profile",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Callback Profile",
    "options": "Callback Profile"
@@ -67,7 +67,6 @@
   {
    "fieldname": "tag",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Tag"
   },
@@ -106,6 +105,20 @@
    "label": "Errors",
    "options": "Scheduled Error",
    "read_only": 1
+  },
+  {
+   "fieldname": "ref_doctype",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Ref DocType"
+  },
+  {
+   "fieldname": "ref_docname",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Ref DocName"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -116,7 +129,7 @@
    "link_fieldname": "schedule_request"
   }
  ],
- "modified": "2022-03-29 23:50:29.324884",
+ "modified": "2022-05-05 10:22:06.284133",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Schedule Request",
@@ -136,5 +149,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "title_field": "method"
 }

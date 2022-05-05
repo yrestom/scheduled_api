@@ -12,13 +12,14 @@ from time import sleep
 def enqueue_execute(request):
     enqueue(
         method=execute,
-        queue="short",
+        queue="long",
         timeout=10000,
         is_async=True,
         kwargs=request,
     )
 
 
+@frappe.whitelist()
 def execute(kwargs):
     request = frappe.get_doc("Schedule Request", kwargs)
     if request.status in ["Processing", "Success"]:
@@ -49,6 +50,8 @@ def execute(kwargs):
 
 
 def create_response(request, data):
+    if isinstance(data, object):
+        data = frappe._dict(data)
     response = frappe.new_doc("Schedule Response")
     response.schedule_request = request.name
     response.status = "Pending"
