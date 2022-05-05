@@ -106,6 +106,9 @@ def send_response(kwargs):
         "data": response.data,
         "reference_id": response.reference_id,
         "request_id": response.schedule_request,
+        "ref_doctype": response.ref_doctype,
+        "ref_docname": response.ref_docname,
+        "tag": response.tag,
     }
     for i in range(3):
         r = {}
