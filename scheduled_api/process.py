@@ -144,3 +144,13 @@ def get_headers(profile=None):
                 headers[h.get("key")] = h.get("value")
 
     return headers
+
+
+def process_all():
+    request_list = frappe.get_all(
+        "Schedule Request",
+        filters={"status": ["in", ["Pending", "Failed"]]},
+        pluck="name",
+    )
+    for request in request_list:
+        enqueue_execute(request)
