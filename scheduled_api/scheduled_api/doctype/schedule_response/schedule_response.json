@@ -41,6 +41,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Method",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -48,13 +49,15 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Tag"
+   "label": "Tag",
+   "read_only": 1
   },
   {
    "fieldname": "callback_url",
    "fieldtype": "Data",
    "in_standard_filter": 1,
-   "label": "Callback URL"
+   "label": "Callback URL",
+   "read_only": 1
   },
   {
    "fieldname": "callback_profile",
@@ -62,7 +65,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Callback Profile",
-   "options": "Callback Profile"
+   "options": "Callback Profile",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_5",
@@ -71,7 +75,8 @@
   {
    "fieldname": "reference_id",
    "fieldtype": "Data",
-   "label": "Reference ID"
+   "label": "Reference ID",
+   "read_only": 1
   },
   {
    "default": "Today",
@@ -89,7 +94,8 @@
   },
   {
    "fieldname": "section_break_8",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Response Data"
   },
   {
    "fieldname": "data",
@@ -103,6 +109,7 @@
    "fieldname": "schedule_request",
    "fieldtype": "Data",
    "label": "Schedule Request",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -135,19 +142,21 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Ref DocType"
+   "label": "Ref DocType",
+   "read_only": 1
   },
   {
    "fieldname": "ref_docname",
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Ref DocName"
+   "label": "Ref DocName",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-05 12:19:05.961635",
+ "modified": "2022-05-05 14:52:01.907715",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Schedule Response",

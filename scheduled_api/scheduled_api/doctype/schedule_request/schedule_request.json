@@ -40,14 +40,16 @@
    "fieldname": "callback_url",
    "fieldtype": "Data",
    "in_standard_filter": 1,
-   "label": "Callback URL"
+   "label": "Callback URL",
+   "read_only": 1
   },
   {
    "fieldname": "callback_profile",
    "fieldtype": "Link",
    "in_standard_filter": 1,
    "label": "Callback Profile",
-   "options": "Callback Profile"
+   "options": "Callback Profile",
+   "read_only": 1
   },
   {
    "fieldname": "method",
@@ -55,6 +57,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Method",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -62,13 +65,15 @@
    "fieldtype": "Code",
    "label": "Data",
    "options": "JSON",
+   "read_only": 1,
    "reqd": 1
   },
   {
    "fieldname": "tag",
    "fieldtype": "Data",
    "in_standard_filter": 1,
-   "label": "Tag"
+   "label": "Tag",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_5",
@@ -76,12 +81,14 @@
   },
   {
    "fieldname": "section_break_8",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Request Data"
   },
   {
    "fieldname": "reference_id",
    "fieldtype": "Data",
-   "label": "Reference ID"
+   "label": "Reference ID",
+   "read_only": 1
   },
   {
    "default": "Pending",
@@ -111,14 +118,16 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Ref DocType"
+   "label": "Ref DocType",
+   "read_only": 1
   },
   {
    "fieldname": "ref_docname",
    "fieldtype": "Data",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Ref DocName"
+   "label": "Ref DocName",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -129,7 +138,7 @@
    "link_fieldname": "schedule_request"
   }
  ],
- "modified": "2022-05-05 12:30:50.307222",
+ "modified": "2022-05-05 14:49:53.998325",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Schedule Request",
