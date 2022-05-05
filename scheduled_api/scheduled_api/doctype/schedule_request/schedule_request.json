@@ -129,7 +129,7 @@
    "link_fieldname": "schedule_request"
   }
  ],
- "modified": "2022-05-05 11:19:59.590371",
+ "modified": "2022-05-05 12:30:50.307222",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Schedule Request",
@@ -150,5 +150,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "title_field": "method"
+ "title_field": "method",
+ "track_changes": 1
 }

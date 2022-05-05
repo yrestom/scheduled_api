@@ -15,6 +15,8 @@
   "reference_id",
   "posting_date",
   "posting_time",
+  "ref_doctype",
+  "ref_docname",
   "section_break_8",
   "data",
   "response_section",
@@ -51,7 +53,6 @@
   {
    "fieldname": "callback_url",
    "fieldtype": "Data",
-   "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Callback URL"
   },
@@ -128,11 +129,25 @@
    "label": "Response",
    "options": "JSON",
    "read_only": 1
+  },
+  {
+   "fieldname": "ref_doctype",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Ref DocType"
+  },
+  {
+   "fieldname": "ref_docname",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Ref DocName"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-05-05 11:40:25.028858",
+ "modified": "2022-05-05 12:19:05.961635",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Schedule Response",
@@ -152,5 +167,6 @@
   }
  ],
  "sort_field": "modified",
- "sort_order": "DESC"
+ "sort_order": "DESC",
+ "title_field": "method"
 }

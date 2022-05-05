@@ -41,17 +41,16 @@ def execute(kwargs):
             frappe.db.set_value("Schedule Request", request.name, "status", "Success")
             create_response(request, data_res)
     except Exception as e:
-        if "Document has been modified after you have opened it" in str(e):
-            enqueue_execute(kwargs)
-        else:
-            request.reload()
-            request.status = "Failed"
-            error = request.append("errors", {})
-            error.time_stamp = now_datetime()
-            error.error = str(e)[0:140]
-            error.traceback = frappe.get_traceback()
-            request.save(ignore_permissions=True)
-            # frappe.db.commit()
+        request.reload()
+        request.status = "Failed"
+        error = request.append("errors", {})
+        error.time_stamp = now_datetime()
+        error.error = str(e)[0:140]
+        error.traceback = frappe.get_traceback()
+        request.save(ignore_permissions=True)
+        frappe.db.commit()
+        if "Document has been modified" in str(e) or "Deadlock found" in str(e):
+            enqueue_execute(request.name)
 
 
 def create_response(request, data):
@@ -67,6 +66,8 @@ def create_response(request, data):
     response.callback_url = request.callback_url
     response.callback_profile = request.callback_profile
     response.reference_id = request.reference_id
+    response.ref_doctype = request.ref_doctype
+    response.ref_docname = request.ref_docname
     response.data = json.dumps(data, indent=4)
     if not response.callback_url:
         response.callback_url = frappe.get_value(
