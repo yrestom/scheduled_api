@@ -7,12 +7,13 @@ from frappe.utils import now_datetime
 import json
 import requests
 from time import sleep
+from frappe.model.document import Document
 
 
 def enqueue_execute(request):
     enqueue(
         method=execute,
-        queue="long",
+        queue="short",
         timeout=10000,
         is_async=True,
         kwargs=request,
@@ -37,20 +38,26 @@ def execute(kwargs):
         else:
             kwargs = json.loads(request.data)
             data_res = frappe.get_attr(request.method)(**kwargs)
-            create_response(request, json.dumps(data_res))
+            frappe.db.set_value("Schedule Request", request.name, "status", "Success")
+            create_response(request, data_res)
     except Exception as e:
-        request.reload()
-        request.status = "Failed"
-        error = request.append("errors", {})
-        error.time_stamp = now_datetime()
-        error.error = str(e)[0:140]
-        error.traceback = frappe.get_traceback()
-        request.save(ignore_permissions=True)
-        frappe.db.commit()
+        if "Document has been modified after you have opened it" in str(e):
+            enqueue_execute(kwargs)
+        else:
+            request.reload()
+            request.status = "Failed"
+            error = request.append("errors", {})
+            error.time_stamp = now_datetime()
+            error.error = str(e)[0:140]
+            error.traceback = frappe.get_traceback()
+            request.save(ignore_permissions=True)
+            # frappe.db.commit()
 
 
 def create_response(request, data):
-    if isinstance(data, object):
+    if isinstance(data, Document):
+        data = data.as_dict(convert_dates_to_str=True)
+    elif isinstance(data, object):
         data = frappe._dict(data)
     response = frappe.new_doc("Schedule Response")
     response.schedule_request = request.name

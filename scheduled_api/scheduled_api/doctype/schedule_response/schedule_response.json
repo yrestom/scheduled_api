@@ -95,6 +95,7 @@
    "fieldtype": "Code",
    "label": "Data",
    "options": "JSON",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -131,7 +132,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2022-03-30 01:06:26.766601",
+ "modified": "2022-05-05 11:40:25.028858",
  "modified_by": "Administrator",
  "module": "Scheduled Api",
  "name": "Schedule Response",

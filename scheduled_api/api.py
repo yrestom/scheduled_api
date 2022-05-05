@@ -27,6 +27,8 @@ def add_request(
     doc.callback_profile = callback_profile
     doc.tag = tag
     doc.reference_id = reference_id
+    doc.ref_doctype = ref_doctype
+    doc.ref_docname = ref_docname
     doc.insert(ignore_mandatory=True, ignore_permissions=True)
     frappe.response["data"] = doc.as_dict()
     frappe.db.commit()
