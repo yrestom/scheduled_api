@@ -15,11 +15,12 @@ def add_request(
     reference_id=None,
     ref_doctype=None,
     ref_docname=None,
+    no_response=None
 ):
     if isinstance(data, dict):
-        data = json.dumps(data)
+        data = json.dumps(data, indent=4)
     elif isinstance(data, object):
-        data = json.dumps(frappe._dict(data))
+        data = json.dumps(frappe._dict(data), indent=4)
     doc = frappe.new_doc("Schedule Request")
     doc.method = method
     doc.data = data
@@ -29,6 +30,7 @@ def add_request(
     doc.reference_id = reference_id
     doc.ref_doctype = ref_doctype
     doc.ref_docname = ref_docname
+    doc.no_response = no_response
     doc.insert(ignore_mandatory=True, ignore_permissions=True)
     frappe.response["data"] = doc.as_dict()
     frappe.db.commit()

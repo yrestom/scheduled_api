@@ -54,10 +54,13 @@ def execute(kwargs):
 
 
 def create_response(request, data):
-    if isinstance(data, Document):
-        data = data.as_dict(convert_dates_to_str=True)
-    elif isinstance(data, object):
-        data = frappe._dict(data)
+    if request.no_response and not request.callback_url:
+        return
+    if data:
+        if isinstance(data, Document):
+            data = data.as_dict(convert_dates_to_str=True)
+        elif isinstance(data, object):
+            data = frappe._dict(data)
     response = frappe.new_doc("Schedule Response")
     response.schedule_request = request.name
     response.status = "Pending"
