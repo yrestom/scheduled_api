@@ -1,56 +1,79 @@
 {
- "actions": [],
- "allow_rename": 1,
- "autoname": "field:title",
- "creation": "2022-03-29 20:29:51.638650",
- "doctype": "DocType",
- "editable_grid": 1,
- "engine": "InnoDB",
- "field_order": [
-  "title",
-  "callback_url",
-  "headers"
- ],
- "fields": [
-  {
-   "fieldname": "title",
-   "fieldtype": "Data",
-   "label": "Title",
-   "unique": 1
-  },
-  {
-   "fieldname": "callback_url",
-   "fieldtype": "Data",
-   "label": "Default Callback URL"
-  },
-  {
-   "fieldname": "headers",
-   "fieldtype": "Table",
-   "label": "Callback Header",
-   "options": "Callback Header"
-  }
- ],
- "index_web_pages_for_search": 1,
- "links": [],
- "modified": "2022-03-30 00:33:57.125630",
- "modified_by": "Administrator",
- "module": "Scheduled Api",
- "name": "Callback Profile",
- "owner": "Administrator",
- "permissions": [
-  {
-   "create": 1,
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  }
- ],
- "sort_field": "modified",
- "sort_order": "DESC"
+  "actions": [],
+  "allow_rename": 1,
+  "autoname": "field:title",
+  "creation": "2022-03-29 20:29:51.638650",
+  "doctype": "DocType",
+  "editable_grid": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "title",
+    "callback_url",
+    "error_callback_url",
+    "column_break_4",
+    "send_errors",
+    "section_break_6",
+    "headers"
+  ],
+  "fields": [
+    {
+      "fieldname": "title",
+      "fieldtype": "Data",
+      "label": "Title",
+      "unique": 1
+    },
+    {
+      "fieldname": "callback_url",
+      "fieldtype": "Data",
+      "label": "Default Callback URL"
+    },
+    {
+      "fieldname": "headers",
+      "fieldtype": "Table",
+      "label": "Callback Header",
+      "options": "Callback Header"
+    },
+    {
+      "fieldname": "error_callback_url",
+      "fieldtype": "Data",
+      "label": "Error Callback URL"
+    },
+    {
+      "fieldname": "column_break_4",
+      "fieldtype": "Column Break"
+    },
+    {
+      "default": "0",
+      "fieldname": "send_errors",
+      "fieldtype": "Check",
+      "label": "Send Errors"
+    },
+    {
+      "fieldname": "section_break_6",
+      "fieldtype": "Section Break"
+    }
+  ],
+  "index_web_pages_for_search": 1,
+  "links": [],
+  "modified": "2022-11-24 11:47:11.460532",
+  "modified_by": "Administrator",
+  "module": "Scheduled Api",
+  "name": "Callback Profile",
+  "owner": "Administrator",
+  "permissions": [
+    {
+      "create": 1,
+      "delete": 1,
+      "email": 1,
+      "export": 1,
+      "print": 1,
+      "read": 1,
+      "report": 1,
+      "role": "System Manager",
+      "share": 1,
+      "write": 1
+    }
+  ],
+  "sort_field": "modified",
+  "sort_order": "DESC"
 }

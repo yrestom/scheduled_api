@@ -34,12 +34,12 @@ def execute(kwargs):
             doc = frappe.get_doc(data)
             doc.save(ignore_permissions=True)
             frappe.db.set_value("Schedule Request", request.name, "status", "Success")
-            create_response(request, doc.as_dict(convert_dates_to_str=True))
+            create_response(request, "Success", doc.as_dict(convert_dates_to_str=True))
         else:
             kwargs = json.loads(request.data)
             data_res = frappe.get_attr(request.method)(**kwargs)
             frappe.db.set_value("Schedule Request", request.name, "status", "Success")
-            create_response(request, data_res)
+            create_response(request, "Success", data_res )
     except Exception as e:
         request.reload()
         request.status = "Failed"
@@ -48,12 +48,16 @@ def execute(kwargs):
         error.error = str(e)[0:140]
         error.traceback = frappe.get_traceback()
         request.save(ignore_permissions=True)
+        if response.callback_url = frappe.get_cached_value(
+            "Callback Profile", response.callback_profile, "send_errors"
+        ):
+            create_response(request, "Failed", None , str(e), error.traceback)
         frappe.db.commit()
         if "Document has been modified" in str(e) or "Deadlock found" in str(e):
             enqueue_execute(request.name)
 
 
-def create_response(request, data):
+def create_response(request, process_status, data=None, error =None, traceback=None):
     if request.no_response and not request.callback_url:
         return
     if data:
@@ -64,6 +68,7 @@ def create_response(request, data):
     response = frappe.new_doc("Schedule Response")
     response.schedule_request = request.name
     response.status = "Pending"
+    response.process_status = process_status
     response.method = request.method
     response.tag = request.tag
     response.callback_url = request.callback_url
@@ -71,9 +76,18 @@ def create_response(request, data):
     response.reference_id = request.reference_id
     response.ref_doctype = request.ref_doctype
     response.ref_docname = request.ref_docname
-    response.data = json.dumps(data, indent=4)
-    if not response.callback_url:
-        response.callback_url = frappe.get_value(
+    response.error = error
+    response.traceback = traceback
+    if data:
+        response.data = json.dumps(data, indent=4)
+    if process_status == "Success" and not request.callback_url:
+        response.callback_url = frappe.get_cached_value(
+            "Callback Profile", response.callback_profile, "callback_url"
+        )
+    elif process_status == "Failed" and not request.error_callback_url:
+        response.callback_url = frappe.get_cached_value(
+            "Callback Profile", response.callback_profile, "error_callback_url"
+        ) or frappe.get_cached_value(
             "Callback Profile", response.callback_profile, "callback_url"
         )
     if not response.callback_url:
@@ -106,11 +120,14 @@ def send_response(kwargs):
     frappe.db.commit()
     headers = get_headers(response.callback_profile)
     data = {
+        "process_status": response.process_status,
         "data": response.data,
         "reference_id": response.reference_id,
         "request_id": response.schedule_request,
         "ref_doctype": response.ref_doctype,
         "ref_docname": response.ref_docname,
+        "error": response.error,
+        "traceback": response.traceback,
         "tag": response.tag,
     }
     for i in range(3):

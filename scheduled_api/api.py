@@ -10,6 +10,7 @@ def add_request(
     method,
     data,
     callback_url=None,
+    error_callback_url=None,
     callback_profile=None,
     tag=None,
     reference_id=None,
@@ -25,6 +26,7 @@ def add_request(
     doc.method = method
     doc.data = data
     doc.callback_url = callback_url
+    doc.error_callback_url = error_callback_url
     doc.callback_profile = callback_profile
     doc.tag = tag
     doc.reference_id = reference_id
