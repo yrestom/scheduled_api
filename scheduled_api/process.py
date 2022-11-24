@@ -48,8 +48,8 @@ def execute(kwargs):
         error.error = str(e)[0:140]
         error.traceback = frappe.get_traceback()
         request.save(ignore_permissions=True)
-        if response.callback_url = frappe.get_cached_value(
-            "Callback Profile", response.callback_profile, "send_errors"
+        if request.error_callback_url or (request.callback_profile and frappe.get_cached_value(
+            "Callback Profile", request.callback_profile, "send_errors")
         ):
             create_response(request, "Failed", None , str(e), error.traceback)
         frappe.db.commit()
