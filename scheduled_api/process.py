@@ -80,16 +80,24 @@ def create_response(request, process_status, data=None, error =None, traceback=N
     response.traceback = traceback
     if data:
         response.data = json.dumps(data, indent=4)
-    if process_status == "Success" and not request.callback_url:
-        response.callback_url = frappe.get_cached_value(
-            "Callback Profile", response.callback_profile, "callback_url"
-        )
-    elif process_status == "Failed" and not request.error_callback_url:
-        response.callback_url = frappe.get_cached_value(
-            "Callback Profile", response.callback_profile, "error_callback_url"
-        ) or frappe.get_cached_value(
-            "Callback Profile", response.callback_profile, "callback_url"
-        )
+    if process_status == "Success":
+        if not request.callback_url and request.callback_profile:
+            response.callback_url = frappe.get_cached_value(
+                "Callback Profile", response.callback_profile, "callback_url"
+            )
+        elif request.callback_url:
+            response.callback_url = request.callback_url
+    elif process_status == "Failed":
+        if request.error_callback_url:
+            response.callback_url = request.error_callback_url
+        elif not request.error_callback_url and request.callback_url:
+            response.callback_url = request.callback_url
+        elif not request.error_callback_url and not request.callback_url and request.callback_profile:
+            response.callback_url = frappe.get_cached_value(
+                "Callback Profile", request.callback_profile, "error_callback_url"
+            ) or frappe.get_cached_value(
+                "Callback Profile", request.callback_profile, "callback_url"
+            )
     if not response.callback_url:
         response.status = "Don't Send"
     response.insert(ignore_permissions=True)
