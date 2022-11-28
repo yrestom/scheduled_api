@@ -48,7 +48,7 @@ def execute(kwargs):
         error.error = str(e)[0:140]
         error.traceback = frappe.get_traceback()
         request.save(ignore_permissions=True)
-        if request.error_callback_url or (request.callback_profile and frappe.get_cached_value(
+        if request.callback_url or request.error_callback_url or (request.callback_profile and frappe.get_cached_value(
             "Callback Profile", request.callback_profile, "send_errors")
         ):
             create_response(request, "Failed", None , str(e), error.traceback)
@@ -58,7 +58,7 @@ def execute(kwargs):
 
 
 def create_response(request, process_status, data=None, error =None, traceback=None):
-    if request.no_response and not request.callback_url:
+    if request.no_response and not (request.error_callback_url or request.callback_url or request.callback_profile):
         return
     if data:
         if isinstance(data, Document):
