@@ -127,7 +127,7 @@ def send_response(kwargs):
     frappe.db.set_value("Schedule Request", response.name, "status", "Sending")
     frappe.db.commit()
     headers = get_headers(response.callback_profile)
-    data = {
+    data = json.dumps({
         "process_status": response.process_status,
         "data": response.data,
         "reference_id": response.reference_id,
@@ -137,7 +137,7 @@ def send_response(kwargs):
         "error": response.error,
         "traceback": response.traceback,
         "tag": response.tag,
-    }
+    })
     for i in range(3):
         r = {}
         try:
