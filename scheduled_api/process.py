@@ -175,7 +175,9 @@ def send_response(kwargs):
 def get_headers(profile=None):
     headers = {}
     if not profile:
-        return {}
+        return {
+            "Content-Type": "application/json"
+        }
     profile = frappe.get_cached_doc("Callback Profile", profile)
     if profile.headers:
         for h in profile.headers:
