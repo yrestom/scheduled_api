@@ -25,7 +25,8 @@ def execute(kwargs):
     request = frappe.get_doc("Schedule Request", kwargs)
     if request.status in ["Processing", "Success"]:
         return
-    frappe.db.set_value("Schedule Request", request.name, "status", "Processing")
+    frappe.db.set_value("Schedule Request", request.name,
+                        "status", "Processing")
     frappe.db.commit()
     try:
         if "." not in request.method:
@@ -33,13 +34,16 @@ def execute(kwargs):
             data["doctype"] = request.method
             doc = frappe.get_doc(data)
             doc.save(ignore_permissions=True)
-            frappe.db.set_value("Schedule Request", request.name, "status", "Success")
-            create_response(request, "Success", doc.as_dict(convert_dates_to_str=True))
+            frappe.db.set_value("Schedule Request",
+                                request.name, "status", "Success")
+            create_response(request, "Success", doc.as_dict(
+                convert_dates_to_str=True))
         else:
             kwargs = json.loads(request.data)
             data_res = frappe.get_attr(request.method)(**kwargs)
-            frappe.db.set_value("Schedule Request", request.name, "status", "Success")
-            create_response(request, "Success", data_res )
+            frappe.db.set_value("Schedule Request",
+                                request.name, "status", "Success")
+            create_response(request, "Success", data_res)
     except Exception as e:
         request.reload()
         request.status = "Failed"
@@ -51,13 +55,13 @@ def execute(kwargs):
         if request.callback_url or request.error_callback_url or (request.callback_profile and frappe.get_cached_value(
             "Callback Profile", request.callback_profile, "send_errors")
         ):
-            create_response(request, "Failed", None , str(e), error.traceback)
+            create_response(request, "Failed", None, str(e), error.traceback)
         frappe.db.commit()
         if "Document has been modified" in str(e) or "Deadlock found" in str(e):
             enqueue_execute(request.name)
 
 
-def create_response(request, process_status, data=None, error =None, traceback=None):
+def create_response(request, process_status, data=None, error=None, traceback=None):
     if request.no_response and not (request.error_callback_url or request.callback_url or request.callback_profile):
         return
     if data:
@@ -121,7 +125,8 @@ def send_response(kwargs):
     if response.status in ["Sending", "Success", "Don't Send"]:
         return
     if not response.callback_url:
-        frappe.db.set_value("Schedule Request", response.name, "status", "Don't Send")
+        frappe.db.set_value("Schedule Request",
+                            response.name, "status", "Don't Send")
         frappe.db.commit()
         return
     frappe.db.set_value("Schedule Request", response.name, "status", "Sending")
@@ -149,7 +154,8 @@ def send_response(kwargs):
                 timeout=15,
             )
             r.raise_for_status()
-            frappe.db.set_value("Schedule Response", response.name, "status", "Success")
+            frappe.db.set_value("Schedule Response",
+                                response.name, "status", "Success")
             if r.text:
                 frappe.db.set_value(
                     "Schedule Response", response.name, "response", r.text
@@ -164,6 +170,7 @@ def send_response(kwargs):
             error.error = str(e)[0:140]
             error.traceback = frappe.get_traceback()
             response.save(ignore_permissions=True)
+            doc = None
             frappe.db.commit()
             sleep(3 * i + 1)
             if i != 2:
