@@ -65,7 +65,9 @@ def create_response(request, process_status, data=None, error=None, traceback=No
     if request.no_response and not (request.error_callback_url or request.callback_url or request.callback_profile):
         return
     if data:
-        if isinstance(data, Document):
+        if isinstance(data, str):
+            data = data
+        elif isinstance(data, Document):
             data = data.as_dict(convert_dates_to_str=True)
         elif isinstance(data, object):
             data = frappe._dict(data)
