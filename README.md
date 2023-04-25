@@ -17,8 +17,3 @@ These features collectively enable the module to handle scheduled API requests e
 #### License
 
 MIT
-
-
-#### License
-
-MIT
